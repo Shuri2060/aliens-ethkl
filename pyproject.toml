@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "alien-ethkl"
+version = "0.0.0"
+description = "👽👽👽"
+authors = ["Shuri2060 <29679284+Shuri2060@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+jupyterlab = "^4.0.10"
+websockets = "^12.0"
+pyyaml = "^6.0.1"
+eth-account = "0.8.0"
+# hyperliquid-python-sdk = "^0.6.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
