@@ -167,7 +167,9 @@ contract AliensGame {
         }
     }
 
-    function dice(uint8 low, uint8 high) internal pure returns (uint8) {
-        return 0;
+    function dice(uint8 low, uint8 high) internal view returns (uint8) {
+        // naive exploitable rng for now
+        // bytes32 aaa = keccak256(bytes("1"));
+        return low + uint8(block.timestamp % (1 + high - low));
     }
 }
