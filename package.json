@@ -1,0 +1,30 @@
+{
+  "name": "aliens-ethkl",
+  "version": "0.0.0",
+  "description": "👽👽👽",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shuri2060/aliens-ethkl.git"
+  },
+  "author": "Shuri2060",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Shuri2060/aliens-ethkl/issues"
+  },
+  "homepage": "https://github.com/Shuri2060/aliens-ethkl#readme",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.12"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.2"
+  }
+}
