@@ -6,6 +6,7 @@ export function Run({ _run }) {
             <h4>Run</h4>
             <form
                 onSubmit={(event) => {
+                    event.preventDefault()
                     _run()
                 }}
             >

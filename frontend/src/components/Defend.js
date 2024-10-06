@@ -6,6 +6,7 @@ export function Defend({ _defend }) {
             <h4>Defend</h4>
             <form
                 onSubmit={(event) => {
+                    event.preventDefault()
                     _defend()
                 }}
             >

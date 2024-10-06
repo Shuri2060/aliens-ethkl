@@ -6,6 +6,7 @@ export function Kick({ _kick }) {
             <h4>Kick</h4>
             <form
                 onSubmit={(event) => {
+                    event.preventDefault()
                     _kick()
                 }}
             >

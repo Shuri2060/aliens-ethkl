@@ -51,6 +51,15 @@ export class Dapp extends React.Component {
         }
         return (
             <div>
+                <label for='hp1'>HP:</label>
+                <input id='hp1' value={this.state.yourHp} disabled></input>
+                <label for='ar1'>Armor:</label>
+                <input id='ar1' value={this.state.yourArmor} disabled></input>
+                <br></br><br></br>
+                <label for='hp2'>HP:</label>
+                <input id='hp2' value={this.state.opponentHp} disabled></input>
+                <label for='ar2'>Armor:</label>
+                <input id='ar2' value={this.state.opponentArmor} disabled></input>
                 <Ready
                     _ready={opponent => this._ready(opponent)}
                 />
@@ -77,7 +86,7 @@ export class Dapp extends React.Component {
 
         // We reinitialize it whenever the user changes their account.
         window.ethereum.on("accountsChanged", ([newAddress]) => {
-            // this._stopPollingData()
+            this._stopPollingData()
             if (newAddress === undefined) {
                 return this._resetState()
             }
@@ -90,7 +99,7 @@ export class Dapp extends React.Component {
             selectedAddress: userAddress,
         })
         this._initializeEthers()
-        // this._startPollingData()
+        this._startPollingData()
     }
 
     async _initializeEthers() {
@@ -102,18 +111,32 @@ export class Dapp extends React.Component {
         )
     }
 
-    // _startPollingData() {
-    //     this._pollDataInterval = setInterval(() => this._updateBalance(), 1000)
-    //     this._updateBalance()
-    // }
+    async _updateStats() {
+        try {
+            if (this.state.selectedAddress && this.state.opponent) {
+                this.state.yourHp = await this._game.hps(this.state.selectedAddress, this.state.opponent)
+                this.state.yourArmor = await this._game.armors(this.state.selectedAddress, this.state.opponent)
+                this.state.opponentHp = await this._game.hps(this.state.opponent, this.state.selectedAddress)
+                this.state.opponentArmor = await this._game.armors(this.state.opponent, this.state.selectedAddress)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
-    // _stopPollingData() {
-    //     clearInterval(this._pollDataInterval)
-    //     this._pollDataInterval = undefined
-    // }
+    _startPollingData() {
+        this._pollDataInterval = setInterval(() => this._updateStats(), 500)
+        this._updateStats()
+    }
+
+    _stopPollingData() {
+        clearInterval(this._pollDataInterval)
+        this._pollDataInterval = undefined
+    }
 
     async _ready(opponent) {
         try {
+            this.state.opponent = String(opponent.toLowerCase())
             this._dismissTransactionError()
             const tx = await this._game.ready(opponent)
             this.setState({ txBeingSent: tx.hash })
@@ -121,7 +144,6 @@ export class Dapp extends React.Component {
             if (receipt.status === 0) {
                 throw new Error("Transaction failed")
             }
-            this.state.opponent = opponent
         } catch (error) {
             if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
                 return
