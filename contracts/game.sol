@@ -157,6 +157,7 @@ contract AliensGame {
                     } else {
                         armors[msg.sender][opponent] += def;
                     }
+                    isTurns[opponent][msg.sender] = true;
                 } else {
                     // Run
                     hps[msg.sender][opponent] = 0;
