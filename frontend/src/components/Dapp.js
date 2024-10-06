@@ -136,7 +136,7 @@ export class Dapp extends React.Component {
     async _punch() {
         try {
             this._dismissTransactionError()
-            const tx = await this._game.punch(this.state.opponent, true, true)
+            const tx = await this._game.action(this.state.opponent, true, true)
             this.setState({ txBeingSent: tx.hash })
             const receipt = await tx.wait()
             if (receipt.status === 0) {
@@ -156,7 +156,7 @@ export class Dapp extends React.Component {
     async _kick() {
         try {
             this._dismissTransactionError()
-            const tx = await this._game.kick(this.state.opponent, true, false)
+            const tx = await this._game.action(this.state.opponent, true, false)
             this.setState({ txBeingSent: tx.hash })
             const receipt = await tx.wait()
             if (receipt.status === 0) {
@@ -176,7 +176,7 @@ export class Dapp extends React.Component {
     async _defend() {
         try {
             this._dismissTransactionError()
-            const tx = await this._game.defend(this.state.opponent, false, true)
+            const tx = await this._game.action(this.state.opponent, false, true)
             this.setState({ txBeingSent: tx.hash })
             const receipt = await tx.wait()
             if (receipt.status === 0) {
@@ -196,7 +196,7 @@ export class Dapp extends React.Component {
     async _run() {
         try {
             this._dismissTransactionError()
-            const tx = await this._game.run(this.state.opponent, false, false)
+            const tx = await this._game.action(this.state.opponent, false, false)
             this.setState({ txBeingSent: tx.hash })
             const receipt = await tx.wait()
             if (receipt.status === 0) {
