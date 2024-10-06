@@ -133,16 +133,15 @@ export class Dapp extends React.Component {
         }
     }
 
-    async _punch(opponent) {
+    async _punch() {
         try {
             this._dismissTransactionError()
-            const tx = await this._game.punch()
+            const tx = await this._game.punch(this.state.opponent, true, true)
             this.setState({ txBeingSent: tx.hash })
             const receipt = await tx.wait()
             if (receipt.status === 0) {
                 throw new Error("Transaction failed")
             }
-            this.state.opponent = opponent
         } catch (error) {
             if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
                 return
@@ -154,16 +153,15 @@ export class Dapp extends React.Component {
         }
     }
 
-    async _kick(opponent) {
+    async _kick() {
         try {
             this._dismissTransactionError()
-            const tx = await this._game.kick()
+            const tx = await this._game.kick(this.state.opponent, true, false)
             this.setState({ txBeingSent: tx.hash })
             const receipt = await tx.wait()
             if (receipt.status === 0) {
                 throw new Error("Transaction failed")
             }
-            this.state.opponent = opponent
         } catch (error) {
             if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
                 return
@@ -175,16 +173,15 @@ export class Dapp extends React.Component {
         }
     }
 
-    async _defend(opponent) {
+    async _defend() {
         try {
             this._dismissTransactionError()
-            const tx = await this._game.defend()
+            const tx = await this._game.defend(this.state.opponent, false, true)
             this.setState({ txBeingSent: tx.hash })
             const receipt = await tx.wait()
             if (receipt.status === 0) {
                 throw new Error("Transaction failed")
             }
-            this.state.opponent = opponent
         } catch (error) {
             if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
                 return
@@ -196,16 +193,16 @@ export class Dapp extends React.Component {
         }
     }
 
-    async _run(opponent) {
+    async _run() {
         try {
             this._dismissTransactionError()
-            const tx = await this._game.run()
+            const tx = await this._game.run(this.state.opponent, false, false)
             this.setState({ txBeingSent: tx.hash })
             const receipt = await tx.wait()
             if (receipt.status === 0) {
                 throw new Error("Transaction failed")
             }
-            this.state.opponent = opponent
+            this.state.opponent = ''
         } catch (error) {
             if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
                 return
