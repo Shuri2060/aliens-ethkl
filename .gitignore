@@ -11,6 +11,7 @@ yarn-error.log
 
 artifacts/
 cache/
+ignition/
 hardhat.config.js
 
 # Logs
