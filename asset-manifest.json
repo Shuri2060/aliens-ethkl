@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/aliens-ethkl/static/css/main.13c139b0.css",
+    "main.js": "/aliens-ethkl/static/js/main.097103cf.js",
+    "index.html": "/aliens-ethkl/index.html",
+    "main.13c139b0.css.map": "/aliens-ethkl/static/css/main.13c139b0.css.map",
+    "main.097103cf.js.map": "/aliens-ethkl/static/js/main.097103cf.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.13c139b0.css",
+    "static/js/main.097103cf.js"
+  ]
+}
