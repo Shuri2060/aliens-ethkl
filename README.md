@@ -30,3 +30,7 @@ When a player reaches 0 HP, they lose.
 Contract Address: `0x25BaB1eA2720A44cB197E13eF579CBb5711F13E5`
 
 Explorer link: https://sepolia.scrollscan.com/address/0x25BaB1eA2720A44cB197E13eF579CBb5711F13E5
+
+### Demo img
+
+![demo](https://i.imgur.com/SJscxac.png)
