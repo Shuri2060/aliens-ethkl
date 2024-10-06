@@ -1,6 +1,7 @@
 import React from "react"
+import { Dapp } from "./Dapp"
 
-export function Ready({ }) {
+export function Ready({ _ready }) {
     return (
         <div>
             <h4>Ready</h4>
@@ -11,7 +12,7 @@ export function Ready({ }) {
                     const opponent = formData.get('Opponent')
 
                     if (opponent) {
-                        this._ready(opponent)
+                        _ready(opponent)
                     }
                 }}
             >

@@ -49,22 +49,25 @@ export class Dapp extends React.Component {
                 />
             )
         }
-        return ((
-            <Ready
-            />
-        )(
-            <Punch
-            />
-        )(
-            <Kick
-            />
-        )(
-            <Defend
-            />
-        )(
-            <Run
-            />
-        ))
+        return (
+            <div>
+                <Ready
+                    _ready={opponent => this._ready(opponent)}
+                />
+                <Punch
+                    _punch={() => this._punch()}
+                />
+                <Kick
+                    _kick={() => this._kick()}
+                />
+                <Defend
+                    _defend={() => this._defend()}
+                />
+                <Run
+                    _run={() => this._run()}
+                />
+            </div>
+        )
     }
 
     async _connectWallet() {
@@ -113,6 +116,90 @@ export class Dapp extends React.Component {
         try {
             this._dismissTransactionError()
             const tx = await this._game.ready(opponent)
+            this.setState({ txBeingSent: tx.hash })
+            const receipt = await tx.wait()
+            if (receipt.status === 0) {
+                throw new Error("Transaction failed")
+            }
+            this.state.opponent = opponent
+        } catch (error) {
+            if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
+                return
+            }
+            console.error(error)
+            this.setState({ transactionError: error })
+        } finally {
+            this.setState({ txBeingSent: undefined })
+        }
+    }
+
+    async _punch(opponent) {
+        try {
+            this._dismissTransactionError()
+            const tx = await this._game.punch()
+            this.setState({ txBeingSent: tx.hash })
+            const receipt = await tx.wait()
+            if (receipt.status === 0) {
+                throw new Error("Transaction failed")
+            }
+            this.state.opponent = opponent
+        } catch (error) {
+            if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
+                return
+            }
+            console.error(error)
+            this.setState({ transactionError: error })
+        } finally {
+            this.setState({ txBeingSent: undefined })
+        }
+    }
+
+    async _kick(opponent) {
+        try {
+            this._dismissTransactionError()
+            const tx = await this._game.kick()
+            this.setState({ txBeingSent: tx.hash })
+            const receipt = await tx.wait()
+            if (receipt.status === 0) {
+                throw new Error("Transaction failed")
+            }
+            this.state.opponent = opponent
+        } catch (error) {
+            if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
+                return
+            }
+            console.error(error)
+            this.setState({ transactionError: error })
+        } finally {
+            this.setState({ txBeingSent: undefined })
+        }
+    }
+
+    async _defend(opponent) {
+        try {
+            this._dismissTransactionError()
+            const tx = await this._game.defend()
+            this.setState({ txBeingSent: tx.hash })
+            const receipt = await tx.wait()
+            if (receipt.status === 0) {
+                throw new Error("Transaction failed")
+            }
+            this.state.opponent = opponent
+        } catch (error) {
+            if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
+                return
+            }
+            console.error(error)
+            this.setState({ transactionError: error })
+        } finally {
+            this.setState({ txBeingSent: undefined })
+        }
+    }
+
+    async _run(opponent) {
+        try {
+            this._dismissTransactionError()
+            const tx = await this._game.run()
             this.setState({ txBeingSent: tx.hash })
             const receipt = await tx.wait()
             if (receipt.status === 0) {

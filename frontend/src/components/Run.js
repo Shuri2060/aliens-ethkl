@@ -1,12 +1,12 @@
 import React from "react"
 
-export function Run({ }) {
+export function Run({ _run }) {
     return (
         <div>
             <h4>Run</h4>
             <form
                 onSubmit={(event) => {
-                    this._run()
+                    _run()
                 }}
             >
                 <div className="form-group">

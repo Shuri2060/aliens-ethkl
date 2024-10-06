@@ -1,12 +1,12 @@
 import React from "react"
 
-export function Kick({ }) {
+export function Kick({ _kick }) {
     return (
         <div>
             <h4>Kick</h4>
             <form
                 onSubmit={(event) => {
-                    this._kick()
+                    _kick()
                 }}
             >
                 <div className="form-group">

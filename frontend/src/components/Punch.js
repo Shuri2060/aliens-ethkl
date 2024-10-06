@@ -1,12 +1,12 @@
 import React from "react"
 
-export function Punch({ }) {
+export function Punch({ _punch }) {
     return (
         <div>
             <h4>Punch</h4>
             <form
                 onSubmit={(event) => {
-                    this._punch()
+                    _punch()
                 }}
             >
                 <div className="form-group">
